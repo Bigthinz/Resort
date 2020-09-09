@@ -12,6 +12,13 @@ class RoomProvider extends Component {
         loading: true
     }
 
+    getRoom = (slug)=>{
+        const tempRooms = [...this.state.rooms]
+        const room = tempRooms.find((room)=> room.slug === slug)
+
+        return room
+    }
+
     //Get Data
 
     componentDidMount(){
@@ -43,7 +50,7 @@ class RoomProvider extends Component {
 
     render() {
         return (
-            <RoomContext.Provider value={{...this.state}}>
+            <RoomContext.Provider value={{...this.state,getRoom: this.getRoom}}>
                 {this.props.children}
             </RoomContext.Provider>
         )
